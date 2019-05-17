@@ -14,15 +14,17 @@ end
 
 def print_header
   puts "The students of Villains Academy"
-  puts "-------------"
+  puts "--------------------------------"
 end
 
+# step 1
 def print_list(students)
   students.each_with_index do |student, index|
     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
+# step 2
 def print_start(students)
   students.each do |student|
     if student[:name].to_s.chr == "A"
@@ -31,6 +33,7 @@ def print_start(students)
   end
 end 
 
+# step 3
 def print_length(students)
   students.each do |student|
     if student[:name].length < 12
@@ -38,6 +41,17 @@ def print_length(students)
     end
   end
 end
+
+# step 4
+def print_while(students)
+  index = 0
+  while index < students.length
+    puts "#{students[index][:name]} (#{students[index][:cohort]} cohort)"
+    index += 1
+  end
+end
+
+# step 5
 
 
 
@@ -47,12 +61,12 @@ end
 
 students = input_students
 print_header
+puts "~~~~~~~~ Step 1 - List ~~~~~~~~"
 print_list(students)
-puts "start with"
+puts "~~~~~~~~ Step 2 - Start with ~~~~~~~~"
 print_start(students)
-puts "length"
+puts "~~~~~~~~~~ Step 3 - Length ~~~~~~~~~~"
 print_length(students)
+puts "~~~~~~~~~~ Step 4 - While ~~~~~~~~~~"
+print_while(students)
 print_footer(students)
-
-
-
