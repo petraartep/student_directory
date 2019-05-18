@@ -58,6 +58,20 @@ def add_groups
 end
 
 
+def print_header
+  puts " The students of Villains Academy ".center(50, '••••••••••')
+  puts "-------------\n".center(50)
+end
+
+def print_footer
+  if @students.count == 1
+    puts "\nOverall, we have #{@students.count} great student\n"
+  else
+    puts "\nOverall, we have #{@students.count} great students\n"
+  end
+end
+
+=begin
 def begin_names
   @students.each do |student|
     if student[:name].to_s.chr == "A"
@@ -82,32 +96,14 @@ def control_flow
     index += 1
   end
 end
-
-def print_header
-  puts " The students of Villains Academy ".center(50, '••••••••••')
-  puts "-------------\n".center(50)
-end
-
-def print_footer
-  if @students.count == 1
-    puts "\nOverall, we have #{@students.count} great student\n"
-  else
-    puts "\nOverall, we have #{@students.count} great students\n"
-  end
-end
+=end
 
 @students = input_students
 if @students.count >= 1 
   print_header
-  puts " Ex 1 - List ".center(50, '••••••••••')
+  puts " List of Students ".center(50, '••••••••••')
   print_students_list
-  puts " Ex 2 - Begin with A ".center(50, '••••••••••')
-  begin_names
-  puts " Ex 3 - Greater than 12 chr ".center(50, '••••••••••')
-  long_names
-  puts " Ex 4 - Control Flow ".center(50, '••••••••••')
-  control_flow
-  puts " Ex 8 - Groups ".center(50, '••••••••••')
+  puts " List by Cohorts ".center(50, '••••••••••')
   add_groups
   print_footer
 else
