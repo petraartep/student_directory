@@ -3,7 +3,7 @@
 def input_students
     puts "Please enter the names of the students"
     puts "To finish, just hit return twice"
-    add_more_student(gets.chomp.capitalize)
+    add_more_student(gets.strip.capitalize)
 end
 
 def add_student(name, cohort)
@@ -24,7 +24,7 @@ def add_more_student(name)
     else puts "Now we have #{@students.count} students"
     end
     puts 'Please enter the name of the next student.'
-    name = gets.chomp.capitalize
+    name = gets.strip.capitalize
   end
   @students
 end
