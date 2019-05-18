@@ -11,8 +11,10 @@ def add_student(name, cohort)
 end
 
 def print_students_list
-  @students.each_with_index do |student, index|
+  if @students.count >= 1 
+    @students.each_with_index do |student, index|
     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
