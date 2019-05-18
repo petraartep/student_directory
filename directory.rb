@@ -19,7 +19,10 @@ end
 def add_more_student(name)
   while !name.empty? do
     add_student(name, add_cohort)
-    puts "Now we have #{@students.count} students"
+    if @students.count == 1
+      puts "Now we have #{@students.count} student"
+    else puts "Now we have #{@students.count} students"
+    end
     puts 'Please enter the name of the next student.'
     name = gets.chomp.capitalize
   end
@@ -84,7 +87,11 @@ def print_header
 end
 
 def print_footer
-  puts "\nOverall, we have #{@students.count} great students\n"
+  if @students.count == 1
+    puts "\nOverall, we have #{@students.count} great student\n"
+  else
+    puts "\nOverall, we have #{@students.count} great students\n"
+  end
 end
 
 @students = input_students
