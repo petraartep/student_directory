@@ -39,19 +39,17 @@ def add_students(name)
 end
 
 def input_students
-    puts "Please enter the names of the students"
-    puts "To finish, just hit return twice"
-    name = STDIN.gets.chomp
+  puts "Please enter the names of the students"
+  puts "To finish, just hit return twice"
+  name = STDIN.gets.chomp
 
   while !name.empty? do
     add_students(name)
 #    @students << {name: name, cohort: :november}
     if @students.count == 1
       puts "Now we have #{@students.count} student"
-    else 
-      puts "Now we have #{@students.count} students"
+    else puts "Now we have #{@students.count} students"
     end
-
     puts 'Please enter the name of the next student.'
     name = STDIN.gets.chomp
   end
@@ -83,9 +81,7 @@ def print_footer
 end
 
 def save_students
-  # open the file for writing
   file = File.open("students.csv", "w")
-  # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -110,9 +106,9 @@ def try_load_students
   if File.exist?(filename) # if it exists
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
-  else # if it doesn't exist
+  else
     puts "Sorry, #{filename} doesn't exist."
-    exit # quit the program
+    exit
   end
 end
 
