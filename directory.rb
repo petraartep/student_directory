@@ -1,3 +1,5 @@
+require "csv"
+
 @students = []
 
 def print_menu
@@ -32,14 +34,20 @@ def process(selection)
   end
 end
 
+# def add_students(name, cohort)
+#  @students << {name: name, cohort: cohort.to_sym}
+# end
+
 def input_students
     puts "Please enter the names of the students"
     puts "To finish, just hit return twice"
     name = STDIN.gets.chomp
+#    cohort = STDIN.gets.chomp
+
+#    add_students(name, cohort)
 
   while !name.empty? do
     @students << {name: name, cohort: :november}
-    
     if @students.count == 1
       puts "Now we have #{@students.count} student"
     else 
@@ -48,6 +56,8 @@ def input_students
 
     puts 'Please enter the name of the next student.'
     name = STDIN.gets.chomp
+#    cohort = STDIN.gets.chomp
+#    add_students(name, cohort)
   end
 end
 
@@ -92,6 +102,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
+#    add_students(name, cohort)
     @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
@@ -108,6 +119,7 @@ def try_load_students
     exit # quit the program
   end
 end
+
 
 try_load_students
 interactive_menu
