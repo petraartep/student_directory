@@ -7,7 +7,7 @@ def input_students
 end
 
 def add_student(name, cohort)
-  @students << { name: name, cohort: cohort.to_sym} # hobbies: :coding
+  @students << { name: name, cohort: cohort.to_sym}
 end
 
 def add_more_student(name)
@@ -38,7 +38,7 @@ end
 
 def show_students
   print_header
-  print_student_list
+  print_students_list
   print_footer
 end
 
@@ -51,7 +51,7 @@ def process(selection)
   when "9"
     exit
   else 
-    puts "I don't know what you meant, try again"
+    puts "I don't know what you mean, try again"
   end
 end
 
@@ -60,7 +60,7 @@ def print_header
   puts "-------------\n".center(50)
 end
 
-def print_student_list
+def print_students_list
   if @students.count >= 1 
     @students.each_with_index do |student, index|
     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
@@ -104,44 +104,5 @@ def add_groups
       puts "#{student[:name]}" if student[:cohort] == cohort
     end
   end
-end
-
-
-def begin_names
-  @students.each do |student|
-    if student[:name].to_s.chr == "A"
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
-end 
-
-def long_names
-  @students.each do |student|
-    if student[:name].length < 12
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
-end
-
-def control_flow
-  index = 0
-  while index < @students.length
-    student = @students[index]
-    puts "#{student[:name]} (#{student[:cohort]} cohort) #{student[:hobbies]}"
-    index += 1
-  end
-end
-
-@students = input_students
-if @students.count >= 1 
-  print_header
-  puts " List of Students ".center(50, '••••••••••')
-  print_student_list
-  puts " List by Cohorts ".center(50, '••••••••••')
-  add_groups
-  print_footer
-else
-  print_header
-  puts "N/A".center(50)
 end
 =end
