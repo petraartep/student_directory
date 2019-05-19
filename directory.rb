@@ -5,8 +5,8 @@ require "csv"
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to file"
+  puts "4. Load the list from file}"
   puts "9. Exit"
 end
 
@@ -26,10 +26,10 @@ def process(selection)
     puts "Show the students"
     show_students
   when "3"
-    puts "Save the list to students.csv"
+    puts "Save the list to file"
     save_students
   when "4"
-    puts "Load the list from students.csv"
+    puts "Load the list from file"
     load_students
   when "9"
     puts "EXIT"
@@ -86,17 +86,21 @@ def print_footer
 end
 
 def save_students
-  file = File.open("students.csv", "w")
+  puts "Please enter the filename to save"
+  filename = STDIN.gets.chomp
+  file = File.open(filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
   file.close
-  puts "• • • File Saved • • •"
+  puts "• • • #{filename} Saved • • •"
 end
 
 def load_students(filename = "students.csv")
+  puts "Please enter a filename to load"
+  filename = STDIN.gets.chomp
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
@@ -104,7 +108,7 @@ def load_students(filename = "students.csv")
 #    @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
-  puts "• • • File Loaded • • •"
+  puts "• • • #{filename} Loaded • • •"
 end
 
 def try_load_students
