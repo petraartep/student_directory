@@ -7,15 +7,7 @@ def input_students
 end
 
 def add_student(name, cohort)
-  @students << { name: name, cohort: cohort.to_sym, hobbies: :coding}
-end
-
-def print_students_list
-  if @students.count >= 1 
-    @students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
+  @students << { name: name, cohort: cohort.to_sym} # hobbies: :coding
 end
 
 def add_more_student(name)
@@ -26,11 +18,68 @@ def add_more_student(name)
     else puts "Now we have #{@students.count} students"
     end
     puts 'Please enter the name of the next student.'
-    name = gets.strip.capitalize
+    name = gets.chomp.capitalize
   end
   @students
 end
 
+def interactive_menu
+  loop do
+    print_menu
+    process(gets.chomp)
+  end
+end
+
+  def print_menu
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+  end
+
+def show_students
+  print_header
+  print_student_list
+  print_footer
+end
+
+def process(selection)
+  case selection
+  when "1"
+    input_students
+  when "2"
+    show_students
+  when "9"
+    exit
+  else 
+    puts "I don't know what you meant, try again"
+  end
+end
+
+def print_header
+  puts " The students of Villains Academy ".center(50, '••••••••••')
+  puts "-------------\n".center(50)
+end
+
+def print_student_list
+  if @students.count >= 1 
+    @students.each_with_index do |student, index|
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  end
+end
+
+
+def print_footer
+  if @students.count == 1
+    puts "\nOverall, we have #{@students.count} great student\n"
+  else
+    puts "\nOverall, we have #{@students.count} great students\n"
+  end
+end
+
+interactive_menu
+
+=begin
 def add_cohort
   months = [
     "January", "February", "March", "April", "May", "June", "July",
@@ -58,20 +107,6 @@ def add_groups
 end
 
 
-def print_header
-  puts " The students of Villains Academy ".center(50, '••••••••••')
-  puts "-------------\n".center(50)
-end
-
-def print_footer
-  if @students.count == 1
-    puts "\nOverall, we have #{@students.count} great student\n"
-  else
-    puts "\nOverall, we have #{@students.count} great students\n"
-  end
-end
-
-=begin
 def begin_names
   @students.each do |student|
     if student[:name].to_s.chr == "A"
@@ -96,13 +131,12 @@ def control_flow
     index += 1
   end
 end
-=end
 
 @students = input_students
 if @students.count >= 1 
   print_header
   puts " List of Students ".center(50, '••••••••••')
-  print_students_list
+  print_student_list
   puts " List by Cohorts ".center(50, '••••••••••')
   add_groups
   print_footer
@@ -110,3 +144,4 @@ else
   print_header
   puts "N/A".center(50)
 end
+=end
