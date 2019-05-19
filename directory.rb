@@ -3,24 +3,20 @@
 def input_students
     puts "Please enter the names of the students"
     puts "To finish, just hit return twice"
-    add_more_student(gets.strip.capitalize)
-end
+    name = gets.chomp.capitalize
 
-def add_student(name, cohort)
-  @students << { name: name, cohort: cohort.to_sym}
-end
-
-def add_more_student(name)
   while !name.empty? do
-    add_student(name, add_cohort)
+    @students << {name: name, cohort: :november}
+    
     if @students.count == 1
       puts "Now we have #{@students.count} student"
-    else puts "Now we have #{@students.count} students"
+    else 
+      puts "Now we have #{@students.count} students"
     end
+
     puts 'Please enter the name of the next student.'
     name = gets.chomp.capitalize
   end
-  @students
 end
 
 def interactive_menu
@@ -38,7 +34,7 @@ end
 
 def show_students
   print_header
-  print_students_list
+  print_student_list
   print_footer
 end
 
@@ -51,7 +47,7 @@ def process(selection)
   when "9"
     exit
   else 
-    puts "I don't know what you mean, try again"
+    puts "I don't know what you meant, try again"
   end
 end
 
@@ -60,14 +56,11 @@ def print_header
   puts "-------------\n".center(50)
 end
 
-def print_students_list
-  if @students.count >= 1 
-    @students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
+def print_student_list
+  @students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
-
 
 def print_footer
   if @students.count == 1
