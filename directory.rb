@@ -49,8 +49,7 @@ def input_students
   name = STDIN.gets.chomp
 
   while !name.empty? do
-    add_students(name)
-#    @students << {name: name, cohort: :november}
+    add_students(name) # @students << {name: name, cohort: :november}
     if @students.count == 1
       puts "Now we have #{@students.count} student"
     else puts "Now we have #{@students.count} students"
@@ -88,27 +87,26 @@ end
 def save_students
   puts "Please enter the filename to save"
   filename = STDIN.gets.chomp
-  file = File.open(filename, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-  end
-  file.close
-  puts "• • • #{filename} Saved • • •"
+  file = File.open(filename, "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
+  end #  file.close
+  puts "• • • #{filename} saved • • •"
 end
 
 def load_students(filename = "students.csv")
   puts "Please enter a filename to load"
   filename = STDIN.gets.chomp
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-    add_students(name)
-#    @students << {name: name, cohort: cohort.to_sym}
-  end
-  file.close
-  puts "• • • #{filename} Loaded • • •"
+  file = File.open(filename, "r") do |file|
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(',')
+      add_students(name) # @students << {name: name, cohort: cohort.to_sym}
+    end
+  end #  file.close
+  puts "• • • #{filename} loaded • • •"
 end
 
 def try_load_students
@@ -122,7 +120,6 @@ def try_load_students
     exit
   end
 end
-
 
 try_load_students
 interactive_menu
