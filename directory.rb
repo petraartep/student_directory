@@ -78,31 +78,3 @@ def print_footer
 end
 
 interactive_menu
-
-=begin
-def add_cohort
-  months = [
-    "January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"
-  ]
-  puts 'Please enter the cohort for the student'
-  cohort = gets.chomp.capitalize
-  if months.include?(cohort)
-    return cohort.to_s
-  else
-    puts "Enter a valid month"
-    add_cohort
-  end
-end
-
-def add_groups
-  cohorts = []
-  @students.map { |student| cohorts << student[:cohort]}
-  cohorts.uniq.each do |cohort| 
-    puts "#{cohort}"
-    @students.map do |student| 
-      puts "#{student[:name]}" if student[:cohort] == cohort
-    end
-  end
-end
-=end
