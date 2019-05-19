@@ -21,7 +21,7 @@ def add_more_student(name)
     end
 # get another name from user      
     puts 'Please enter the name of the next student.'
-    name = gets.chomp.capitalize
+    name = gets.strip.capitalize
   end
 # return the array of students    
   @students
@@ -94,7 +94,7 @@ def control_flow
   index = 0
   while index < @students.length
     student = @students[index]
-    puts "#{student[:name]} (#{student[:cohort]} cohort) #{student[:hobbies]}"
+    puts "#{student[:name]} (#{student[:cohort]} cohort) ~ #{student[:hobbies]}"
     index += 1
   end
 end
