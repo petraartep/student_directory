@@ -20,14 +20,19 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "Input the students"
     input_students
   when "2"
+    puts "Show the students"
     show_students
   when "3"
+    puts "Save the list to students.csv"
     save_students
   when "4"
+    puts "Load the list from students.csv"
     load_students
   when "9"
+    puts "EXIT"
     exit
   else 
     puts "I don't know what you meant, try again"
@@ -88,6 +93,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "• • • File Saved • • •"
 end
 
 def load_students(filename = "students.csv")
@@ -98,6 +104,7 @@ def load_students(filename = "students.csv")
 #    @students << {name: name, cohort: cohort.to_sym}
   end
   file.close
+  puts "• • • File Loaded • • •"
 end
 
 def try_load_students
