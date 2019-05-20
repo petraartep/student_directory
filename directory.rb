@@ -79,8 +79,7 @@ end
 def print_footer
   if @students.count == 1
     puts "\nOverall, we have #{@students.count} great student"
-  else
-    puts "\nOverall, we have #{@students.count} great students"
+  else puts "\nOverall, we have #{@students.count} great students"
   end
 end
 
@@ -96,7 +95,6 @@ def save_students
   puts "• • • #{filename} saved • • •"
 end
 
-
 def load_students(filename = "students.csv")
   puts "Please enter a filename to load"
   filename = STDIN.gets.chomp
@@ -111,8 +109,8 @@ def load_students(filename = "students.csv")
 end
 
 def try_load_students
-  filename = ARGV.first # first argument from the command line
-  return if filename.nil? # get out of the method if it isn't given
+  filename = ARGV.first
+  return if filename.nil?
   if File.exist?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
