@@ -1,4 +1,4 @@
-require "csv"
+require 'csv'
 
 @students = []
 
@@ -6,7 +6,7 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list to file"
-  puts "4. Load the list from file}"
+  puts "4. Load the list from file"
   puts "9. Exit"
 end
 
@@ -94,28 +94,31 @@ def save_students
 #      csv_line = student_data.join(",")
 #      file.puts csv_line
     end
-  end #  file.close
+  end
   puts "• • • #{filename} saved • • •"
 end
 
+
 def load_students(filename = "students.csv")
   puts "Please enter a filename to load"
-    filename = STDIN.gets.chomp
+  filename = STDIN.gets.chomp
+#  filename.empty? ? filename = "students.csv" : filename = STDIN.gets.chomp
+  if filename.empty? 
+    filename = "students.csv"
+  end
 #    CSV.open(filename, "r") do |csv|
 #    File.readlines.each do |line|
      CSV.foreach(filename) do |row|
       name, cohort = row
-#      name, cohort = line.chomp.split(',')
-      add_students(name) # @students << {name: name, cohort: cohort.to_sym}
-#      end
-    end #  file.close
+      add_students(name)
+    end
   puts "• • • #{filename} loaded • • •"
 end
 
 def try_load_students
   filename = ARGV.first # first argument from the command line
-  if filename.nil? # get out of the method if it isn't given
-  elsif File.exist?(filename) # if it exists
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exist?(filename) # if it exists
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else
