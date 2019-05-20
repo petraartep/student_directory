@@ -40,7 +40,7 @@ def process(selection)
 end
 
 def add_students(name)
-  @students << {name: name, cohort: :november}  # cohort.to_sym
+  @students << {name: name, cohort: :november}
 end
 
 def input_students
@@ -49,7 +49,7 @@ def input_students
   name = STDIN.gets.chomp
 
   while !name.empty? do
-    add_students(name) # @students << {name: name, cohort: :november}
+    add_students(name)
     if @students.count == 1
       puts "Now we have #{@students.count} student"
     else puts "Now we have #{@students.count} students"
@@ -91,8 +91,6 @@ def save_students
     @students.each do |student|
       student_data = [student[:name], student[:cohort]]
       csv << student_data
-#      csv_line = student_data.join(",")
-#      file.puts csv_line
     end
   end
   puts "• • • #{filename} saved • • •"
@@ -102,12 +100,9 @@ end
 def load_students(filename = "students.csv")
   puts "Please enter a filename to load"
   filename = STDIN.gets.chomp
-#  filename.empty? ? filename = "students.csv" : filename = STDIN.gets.chomp
   if filename.empty? 
     filename = "students.csv"
   end
-#    CSV.open(filename, "r") do |csv|
-#    File.readlines.each do |line|
      CSV.foreach(filename) do |row|
       name, cohort = row
       add_students(name)
@@ -116,9 +111,9 @@ def load_students(filename = "students.csv")
 end
 
 def try_load_students
-  filename = "students.csv" #ARGV.first # first argument from the command line
+  filename = ARGV.first # first argument from the command line
   return if filename.nil? # get out of the method if it isn't given
-  if File.exist?(filename) # if it exists
+  if File.exist?(filename)
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else
