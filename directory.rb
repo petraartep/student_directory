@@ -120,5 +120,12 @@ def try_load_students
   end
 end
 
+def source_code
+  puts "Path to file: #{__FILE__}"
+  puts "Directory name: #{File.dirname(__FILE__)}"
+  puts "File name: #{File.basename(__FILE__)}"
+end
+
+source_code
 try_load_students
 interactive_menu
